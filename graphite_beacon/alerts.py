@@ -208,7 +208,7 @@ class BaseAlert(_.with_metaclass(AlertFabric)):
         rvalue = expr['mod'](rvalue)
         return rvalue
 
-    def notify(self, level, value, target=None, ntype=None, rule=None):
+    def notify(self, level, value, target=None, ntype=None, rule=None, threshold=None):
         """Notify main reactor about event."""
         # Did we see the event before?
         if target in self.state and level == self.state[target]:
@@ -220,7 +220,7 @@ class BaseAlert(_.with_metaclass(AlertFabric)):
             return False
 
         self.state[target] = level
-        return self.reactor.notify(level, self, value, target=target, ntype=ntype, rule=rule)
+        return self.reactor.notify(level, self, value, target=target, ntype=ntype, rule=rule, threshold=rule_value, time_window=self.time_window)
 
     def load(self):
         """Load from remote."""

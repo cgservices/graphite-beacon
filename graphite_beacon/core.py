@@ -130,16 +130,16 @@ class Reactor(object):
             os.unlink(self.options.get('pidfile'))
         LOGGER.info('Reactor has stopped')
 
-    def notify(self, level, alert, value, target=None, ntype=None, rule=None):
+    def notify(self, level, alert, value, target=None, ntype=None, rule=None, threshold=None, time_window=None):
         """ Provide the event to the handlers. """
 
-        LOGGER.info('Notify %s:%s:%s:%s', level, alert, value, target or "")
+        LOGGER.info('Notify %s:%s:%s:%s:%s:%s', level, alert, value, target or "", threshold or "", time_window or "")
 
         if ntype is None:
             ntype = alert.source
 
         for handler in self.handlers.get(level, []):
-            handler.notify(level, alert, value, target=target, ntype=ntype, rule=rule)
+            handler.notify(level, alert, value, target=target, ntype=ntype, rule=rule, threshold=threshold, time_window=time_window)
 
 _LOG_LEVELS = {
     'DEBUG': logging.DEBUG,

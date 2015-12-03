@@ -42,16 +42,16 @@ class AbstractHandler(_.with_metaclass(HandlerMeta)):
         self.init_handler()
         LOGGER.debug('Handler "%s" has inited: %s', self.name, self.options)
 
-    def get_short(self, level, alert, value, target=None, ntype=None, rule=None):
+    def get_short(self, level, alert, value, target=None, ntype=None, rule=None, threshold=None, time_window=None):
         tmpl = TEMPLATES[ntype]['short']
         return tmpl.generate(
-            level=level, reactor=self.reactor, alert=alert, value=value, target=target).strip()
+            level=level, reactor=self.reactor, alert=alert, value=value, target=target,threshold=threshold,range=time_window).strip()
 
     def init_handler(self):
         """ Init configuration here."""
         raise NotImplementedError()
 
-    def notify(self, level, alert, value, target=None, ntype=None, rule=None):
+    def notify(self, level, alert, value, target=None, ntype=None, rule=None, threshold=None,time_window=None):
         raise NotImplementedError()
 
 registry = HandlerMeta
