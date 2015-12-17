@@ -1,5 +1,5 @@
 {% if level == 'normal' %}
-{{ reactor.options.get('prefix') }} {{level.upper() }} <{{ alert.name }}>{% if target %} `{{target}}`{% end %} is back to normal.
+{{ reactor.options.get('prefix') }} {{level.upper() }} *{{ alert.name }}* {% if target %} `{{target}}`{% end %} is back to normal.
 {% else %}
 {{ reactor.options.get('prefix') }} *{{ level.upper() }} alert* on *{{ alert.name }}* failed.
 > _Current value_:      `{{ alert.convert(value) }}`

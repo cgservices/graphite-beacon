@@ -220,6 +220,7 @@ class BaseAlert(_.with_metaclass(AlertFabric)):
             return False
 
         self.state[target] = level
+        rule_value = rule['raw'][-8:].strip() if rule else ''
         return self.reactor.notify(level, self, value, target=target, ntype=ntype, rule=rule, threshold=rule_value, time_window=self.time_window)
 
     def load(self):
