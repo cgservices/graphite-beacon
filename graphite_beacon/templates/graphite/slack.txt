@@ -1,7 +1,7 @@
 {% if level == 'normal' %}
 {{ reactor.options.get('prefix') }} {{level.upper() }} *{{ alert.name }}* {% if target %} `{{target}}`{% end %} is back to normal.
 {% else %}
-{{ reactor.options.get('prefix') }} *{{ level.upper() }} alert* on *{{ alert.name }}* failed.
+{{ reactor.options.get('prefix') }} *{{ level.upper() }}* on *{{ alert.name }}* failed.
 > _Current value_:      `{{ alert.convert(value) }}`
 {% if threshold %}> _Threshold value_:  `{{ alert.convert(threshold) }}` {% if range %} over  `{{ range }}(s)` {% end %}{% end %}
 {% if target %}> <{{ alert.get_graph_url(target) }}|View Graph>{% end %}

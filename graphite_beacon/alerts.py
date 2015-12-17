@@ -220,8 +220,8 @@ class BaseAlert(_.with_metaclass(AlertFabric)):
             return False
 
         self.state[target] = level
-        rule_value = rule['raw'][-8:].strip() if rule else ''
-        return self.reactor.notify(level, self, value, target=target, ntype=ntype, rule=rule, threshold=rule_value, time_window=self.time_window)
+        rule_value = rule['raw'].strip() if rule else ''
+        return self.reactor.notify(level, self, value, target=target, ntype=ntype, rule=rule, threshold=rule_value, time_window=self.interval)
 
     def load(self):
         """Load from remote."""
