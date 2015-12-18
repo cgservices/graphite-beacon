@@ -279,6 +279,9 @@ class GraphiteAlert(BaseAlert):
                     self.loading_error, 'Loading error: %s' % e, target='loading', ntype='common')
             self.waiting = False
 
+    def get_grafana_url(self):
+        return "https://monitor.cgdev.nl"
+
     def get_graph_url(self, target, graphite_url=None):
         """Get Graphite URL."""
         return self._graphite_url(target, graphite_url=graphite_url, raw_data=False)
